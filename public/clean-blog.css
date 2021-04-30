@@ -578,6 +578,10 @@ footer .copyright {
     border-bottom: 1px solid #DDDDDD;
 }
 
+.project-content span {
+    color: gray;
+}
+
 @media screen and (max-width: 768px) {
     .editor-wrapper .editor-title {
         font-size: 20px;
