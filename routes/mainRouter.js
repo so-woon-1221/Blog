@@ -57,9 +57,9 @@ router.get('/', async (req, res, next) => {
   try {
     const image = `/image/${getBackgroundImage()}`;
     const totalPost = await Post.countDocuments({}); // (2)
-    if (!totalPost) { // (3)
-      throw Error();
-    }
+    // if (!totalPost) { // (3)
+    //   throw Error();
+    // }
     const {
       startPage,
       endPage,
