@@ -1,0 +1,76 @@
+{% extends 'layout.njk' %}
+
+
+{% block contents %}
+<!-- Page Header -->
+{% if post.thumbnail %}
+<header class="masthead" style="background-image: url({{ post.thumbnail }})">
+    {% else %}
+    <header class="masthead" style="background-image: url({{ image }})">
+        {% endif %}
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="post-heading">
+                        <h1>{{ post.title }}</h1>
+                        <div style="display: flex; align-items: center">
+                            <h2 class="subheading">{{ post.subtitle }}</h2>
+                            <h4 class="post-heading-category" id="post-category"></h4>
+                        </div>
+                        <span class="meta">Posted on {{ post.createdAt }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div style="width: 100%" id="content"></div>
+                    {% if user %}
+                        <button class="btn btn-danger float-right" id="delete-button">삭제</button>
+                        <a class="btn btn-secondary float-right" id="update-button" href="/editor/{{ post.id }}">수정</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </article>
+    {% endblock %}
+
+
+    {% block script %}
+        <script>
+            const content = document.getElementById('content');
+            {# alert('{{ post.content }}'); #}
+            content.innerHTML = '{{ post.content | safe }}'
+
+            const deleteButton = document.getElementById('delete-button');
+            deleteButton.addEventListener('click', async function (e) {
+                try {
+                    if (confirm('삭제하시겠습니까?')) {
+                        const result = await axios.delete('/post/{{ post.id }}');
+                        alert(result.data.message);
+                        location.href = '/'
+                    }
+                } catch (e) {
+                    alert(`등록이 실패했습니다.${e.stack}`);
+                    console.error(e);
+                }
+            })
+
+            const postCategory = document.getElementById('post-category');
+            const categories = '{{ post.category }}'.split(',');
+            if (categories.length > 1) {
+                for (let category of categories) {
+                    const aTag = document.createElement('a');
+                    aTag.href = `/category/${category}`;
+                    aTag.innerText = '#' + category + ' ';
+                    postCategory.append(aTag)
+                }
+            }
+        </script>
+    {% endblock %}

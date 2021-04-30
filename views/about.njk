@@ -1,0 +1,67 @@
+{% extends 'layout.njk' %}
+
+{% block contents %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ image }}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="page-heading">
+                        <h1>About Me</h1>
+                        <span class="subheading">편하게 살고싶은 사람</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 mx-auto profile-image">
+                <img src="/image/profile.jpeg">
+            </div>
+            <div class="col-lg-7 col-md-7 mx-auto profile-content">
+                <div class="profile-content-label">
+                    <h1>Contact</h1>
+                    <p>
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>janus759@gmail.com</span>
+                    </p>
+                    <p>
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/so-woon-1221" target="_blank">so-woon-1221</a>
+                    </p>
+                    <p>
+                        <i class="fab fa-safari"></i>
+                        <a href="/">블로그 주소</a>
+                    </p>
+                    <p>
+                        <i class="fab fa-instagram"></i>
+                        <a href="https://instagram.com/sowoon_1221" target="_blank">sowoon_1221</a>
+                    </p>
+                </div>
+
+                <div class="profile-content-label">
+                    <h1>Introduce</h1>
+                    <p>누구보다 편하게 살기위해 누구보다 노력하는 사람입니다.</p>
+                    <p>다양한 분야의 흥미와 관심을 녹여내고 싶습니다.</p>
+                </div>
+
+                <div class="profile-content-label">
+                    <h1>Skill</h1>
+                    <p>Language : C Language / java / python</p>
+                    <p>Back-end : nodeJs / spring / spring boot</p>
+                    <p>Front-end : javaScript / React </p>
+                    <p>DataBase : SQL(MySQL, Oracle) / MongoDB</p>
+                    <p>Certificate : 정보처리기사 / SQLD</p>
+                </div>
+                <div class="profile-content-label">
+                    <h1>Education & Experience</h1>
+                    <p>2014.03 - 2018.02 숭실대학교 컴퓨터학부 졸업</p>
+                    <p>2018.03 - 2020.06 수도기계화보병사단 26기계화보병여단 운용소대장 전역</p>
+                </div>
+            </div>
+        </div>
+{% endblock %}

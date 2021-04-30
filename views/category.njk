@@ -1,0 +1,83 @@
+{% extends 'layout.njk' %}
+
+{% block contents %}
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('{{ image }}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Category</h1>
+                        {% if category %}
+                            <span class="subheading">{{ category }}</span>
+                        {% else %}
+                            <br>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    {% if posts %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    {% for post in posts %}
+                        <div class="post-preview">
+                            <a href="/post/{{ post.id }}">
+                                <h2 class="post-title">
+                                    {{ post.title }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ post.subtitle }}
+                                </h3>
+                            </a>
+                            <p class="post-meta" id="post-date">{{ post.createdAt }}</p>
+                        </div>
+                        <hr>
+                    {% endfor %}
+
+                    <!-- Pager -->
+                    <div class="clearfix">
+                        {% if currentPage < endPage and endPage > 1 %}
+                            <a class="btn btn-primary float-right" href="/category/{{ category }}?page={{ currentPage+1 }}">Next &rarr;</a>
+                        {% endif %}
+                        {% if currentPage > 1 %}
+                            <a class="btn btn-primary float-right" href="/category/{{ category }}?page={{ currentPage-1 }}">&larr; Prev</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if results %}
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    {% for result in results %}
+                        <div class="post-preview">
+                            <a href="/category/{{ result.name }}">
+                                <h2 class="post-title">
+                                    {{ result.name }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ result.count }}개의 게시물
+                                </h3>
+                            </a>
+                            {# <p class="post-meta" id="post-date">{{ post.createdAt }}</p> #}
+                        </div>
+                        <hr>
+                    {% endfor %}
+
+                    {# <!-- Pager --> #}
+                    {# <div class="clearfix"> #}
+                    {# <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a> #}
+                    {# </div> #}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
