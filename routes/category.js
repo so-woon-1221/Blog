@@ -28,9 +28,9 @@ router.get('/:category', async (req, res, next) => {
   const image = `/image/${getBackgroundImage()}`;
   try {
     const totalPost = await Post.countDocuments({ category: req.params.category }); // (2)
-    if (!totalPost) { // (3)
-      throw Error();
-    }
+    // if (!totalPost) { // (3)
+    //   throw Error();
+    // }
     const {
       startPage,
       endPage,

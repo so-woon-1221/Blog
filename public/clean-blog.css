@@ -523,14 +523,36 @@ footer .copyright {
 
 .profile-image img {
     width: 100%;
+    /*margin-bottom: 30px;*/
+}
+
+.project-image img {
+    width: 100%;
+    padding: 20px 0;
 }
 
 .profile-content-label {
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
 .profile-content-label h1 {
     padding-bottom: 10px;
+}
+
+.profile-content-label h3 {
+    padding-bottom: 10px
+}
+
+.profile-content-label .dash-list {
+    list-style: none;
+    padding: 0;
+    margin-left: 20px;
+}
+
+.profile-content-label .dash-list li:before {
+    content: '- ';
+    position: absolute;
+    margin-left: -20px;
 }
 
 .profile-content-label i {
@@ -544,10 +566,16 @@ footer .copyright {
 
 .profile-content-label p a {
     text-decoration: none;
+    /*font-weight: bold;*/
 }
 
 .profile-content-label p a:hover {
     text-decoration: underline;
+}
+
+.project-content {
+    padding-top: 20px;
+    border-bottom: 1px solid #DDDDDD;
 }
 
 @media screen and (max-width: 768px) {
