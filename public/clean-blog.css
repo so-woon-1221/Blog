@@ -8,7 +8,8 @@ body {
     font-size: 20px;
     color: #212529;
     font-family: 'Gothic A1', sans-serif;, 'Lora', 'Times New Roman', serif;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    word-break: keep-all;
 }
 
 p {

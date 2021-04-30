@@ -75,16 +75,16 @@
             {# alert('{{ post.content }}'); #}
             content.innerHTML = '{{ post.content | safe }}'
 
-                const postCategory = document.getElementById('post-category');
-                const categories = '{{ post.category }}'.split(',');
-                if (categories.length > 1) {
-                    for (let category of categories) {
-                        const aTag = document.createElement('a');
-                        aTag.href = `/category/${category}`;
-                        aTag.innerText = '#' + category + ' ';
-                        postCategory.append(aTag)
-                    }
-                }
+            const postCategory = document.getElementById('post-category');
+            const categories = '{{ post.category }}'.split(',');
+            if (categories.length >= 1) {
+            for (let category of categories) {
+                 const aTag = document.createElement('a');
+                 aTag.href = `/category/${category}`;
+                 aTag.innerText = `#${category} `;
+                 postCategory.append(aTag)
+                 }
+            }
 
             const deleteButton = document.getElementById('delete-button');
             deleteButton.addEventListener('click', async function (e) {
