@@ -3,11 +3,11 @@
 
 {% block contents %}
 <!-- Page Header -->
-{% if post.thumbnail %}
-<header class="masthead" style="background-image: url({{ post.thumbnail }})">
+    {% if post.thumbnail %}
+        <header class="masthead" style="background-image: url({{ post.thumbnail }})">
     {% else %}
-    <header class="masthead" style="background-image: url({{ image }})">
-        {% endif %}
+        <header class="masthead" style="background-image: url({{ image }})">
+    {% endif %}
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -48,6 +48,17 @@
             {# alert('{{ post.content }}'); #}
             content.innerHTML = '{{ post.content | safe }}'
 
+                const postCategory = document.getElementById('post-category');
+                const categories = '{{ post.category }}'.split(',');
+                if (categories.length > 1) {
+                    for (let category of categories) {
+                        const aTag = document.createElement('a');
+                        aTag.href = `/category/${category}`;
+                        aTag.innerText = '#' + category + ' ';
+                        postCategory.append(aTag)
+                    }
+                }
+
             const deleteButton = document.getElementById('delete-button');
             deleteButton.addEventListener('click', async function (e) {
                 try {
@@ -61,16 +72,5 @@
                     console.error(e);
                 }
             })
-
-            const postCategory = document.getElementById('post-category');
-            const categories = '{{ post.category }}'.split(',');
-            if (categories.length > 1) {
-                for (let category of categories) {
-                    const aTag = document.createElement('a');
-                    aTag.href = `/category/${category}`;
-                    aTag.innerText = '#' + category + ' ';
-                    postCategory.append(aTag)
-                }
-            }
         </script>
     {% endblock %}
