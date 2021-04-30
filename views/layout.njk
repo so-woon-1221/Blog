@@ -171,6 +171,14 @@
 <!-- Custom scripts for this template -->
 <script src="/clean-blog.min.js"></script>
 
+<script>
+    window.onload = () => {
+        if (new URL(location.href).searchParams.get('loginError')) {
+            alert(new URL(location.href).searchParams.get('loginError'));
+        }
+    };
+</script>
+
 {% block script %}
 {% endblock %}
 
