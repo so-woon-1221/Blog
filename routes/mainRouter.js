@@ -23,6 +23,10 @@ router.use((req, res, next) => {
   next();
 });
 
+router.get('/sitemap.xml', (req, res) => {
+  res.sendFile(path.join(__dirname, '../', 'sitemap.xml'));
+});
+
 router.get('/about', (req, res, next) => {
   const image = `/image/${getBackgroundImage()}`;
   res.render('about', { image, title: 'About' });
