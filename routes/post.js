@@ -29,7 +29,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
     console.log(post);
-    res.render('post', { post, image });
+    res.render('post', { post, image, title: post.title });
   } catch (e) {
     console.log(e);
     next(e);

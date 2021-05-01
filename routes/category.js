@@ -52,6 +52,7 @@ router.get('/:category', async (req, res, next) => {
       totalPage,
       category: req.params.category,
       image,
+      title: req.params.category,
     });
   } catch (e) {
     console.error(e);
@@ -80,7 +81,7 @@ router.get('/', async (req, res, next) => {
     }
     results.sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
     // res.send(results);
-    res.render('category', { results, image });
+    res.render('category', { results, image, title: 'Category' });
   } catch (e) {
     console.error(e);
     next(e);

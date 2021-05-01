@@ -25,7 +25,7 @@ router.use((req, res, next) => {
 
 router.get('/about', (req, res, next) => {
   const image = `/image/${getBackgroundImage()}`;
-  res.render('about', { image });
+  res.render('about', { image, title: 'About' });
 });
 
 router.post('/background', upload.single('img'), (req, res) => {
@@ -79,6 +79,7 @@ router.get('/', async (req, res, next) => {
       endPage,
       totalPage,
       image,
+      title: 'Sowoon',
     });
   } catch (e) {
     console.error(e);
