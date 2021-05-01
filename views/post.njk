@@ -2,39 +2,60 @@
 
 
 {% block contents %}
-<!-- Page Header -->
+    <!-- Page Header -->
     {% if post.thumbnail %}
         <header class="masthead" style="background-image: url({{ post.thumbnail }})">
-    {% else %}
-        <header class="masthead" style="background-image: url({{ image }})">
-    {% endif %}
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <div class="post-heading">
-                        <h1>{{ post.title }}</h1>
-                        <div style="display: flex;">
-                            <h2 class="subheading">{{ post.subtitle }}</h2>
-                            <h4 class="post-heading-category" id="post-category"></h4>
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="post-heading">
+                            <h1>{{ post.title }}</h1>
+                            <div style="display: flex;">
+                                <h2 class="subheading">{{ post.subtitle }}</h2>
+                                <h4 class="post-heading-category" id="post-category"></h4>
+                            </div>
+                            <span class="meta">Posted on {{ post.postDate }}</span>
                         </div>
-                        <span class="meta">Posted on {{ post.postDate }}</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
+    {% else %}
+        <header class="masthead" style="background-image: url({{ image }})">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <div class="post-heading">
+                            <h1>{{ post.title }}</h1>
+                            <div style="display: flex;">
+                                <h2 class="subheading">{{ post.subtitle }}</h2>
+                                <h4 class="post-heading-category" id="post-category"></h4>
+                            </div>
+                            <span class="meta">Posted on {{ post.postDate }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    {% endif %}
+
 
     <!-- Post Content -->
     <article>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
-                    <div style="width: 100%" id="content">{{ post.content | safe }}</div>
-                    {% if user %}
-                        <button class="btn btn-danger float-right" id="delete-button">삭제</button>
-                        <a class="btn btn-secondary float-right" id="update-button" href="/editor/{{ post.id }}">수정</a>
-                    {% endif %}
+                    <div style="width: 100%; height: auto;!important;" id="content"
+                         class="ql-snow ql-editor">{{ post.content | safe }}</div>
+                    <div>
+                        {% if user %}
+                            <button class="btn btn-danger float-right" id="delete-button">삭제</button>
+                            <a class="btn btn-secondary float-right" id="update-button"
+                               href="/editor/{{ post.id }}">수정</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,17 +69,18 @@
         </div>
     </div>
 
-{#DISQUS 댓글#######}
+    {# DISQUS 댓글###### #}
     <script>
-        (function() { // DON'T EDIT BELOW THIS LINE
-        let d = document, s = d.createElement('script');
-        s.src = 'https://so-woon-1221-github-io.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
+        (function () { // DON'T EDIT BELOW THIS LINE
+            let d = document, s = d.createElement('script');
+            s.src = 'https://so-woon-1221-github-io.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
         })();
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    {% endblock %}
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+{% endblock %}
 
 
     {% block script %}
@@ -67,10 +89,10 @@
             const categories = '{{ post.category }}'.split(',');
             if (categories.length >= 1) {
                 for (let category of categories) {
-                  const aTag = document.createElement('a');
-                  aTag.href = `/category/${category}`;
-                  aTag.innerText = `#${category} `;
-                  postCategory.append(aTag)
+                    const aTag = document.createElement('a');
+                    aTag.href = `/category/${category}`;
+                    aTag.innerText = `#${category} `;
+                    postCategory.append(aTag)
                 }
             }
 
