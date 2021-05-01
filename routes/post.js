@@ -49,7 +49,7 @@ router.delete('/:id', async (req, res, next) => {
 });
 
 router.patch('/:id', async (req, res, next) => {
-  const date = new Date().toDateString();
+  // const date = new Date().toDateString();
   try {
     const post = await Post.findOneAndUpdate({ _id: req.params.id },
       {
@@ -58,7 +58,7 @@ router.patch('/:id', async (req, res, next) => {
         content: req.body.content,
         thumbnail: req.body.thumbnail,
         category: req.body.category,
-        postDate: date,
+        // postDate: date,
       });
     res.send({ message: '수정되었습니다.' });
   } catch (e) {

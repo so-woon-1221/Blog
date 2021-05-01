@@ -16,7 +16,6 @@ const postSchema = new Schema({
   },
   postDate: {
     type: String,
-    required: true,
   },
 });
 
