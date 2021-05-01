@@ -1,13 +1,14 @@
 const express = require('express');
 const Post = require('../schemas/post');
+const { isLoggedIn } = require('./middlewares');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', isLoggedIn, (req, res, next) => {
   res.render('editor');
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', isLoggedIn, async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id);
     res.render('editor', { post });
