@@ -10,6 +10,7 @@ const helmet = require('helmet');
 const hpp = require('hpp');
 const redis = require('redis');
 const RedisStore = require('connect-redis')(session);
+const favicon = require('serve-favicon');
 const connect = require('./schemas');
 
 dotenv.config();
@@ -58,6 +59,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(favicon(path.join(__dirname, 'public', 'icon.ico')));
 
 app.use('/', mainRouter);
 app.use('/post', postRouter);
