@@ -38,6 +38,10 @@ router.post('/background', upload.single('img'), (req, res) => {
   // res.json({ url: `/img/${req.file.filname}` });
 });
 
+router.get('/googleb860f28972416876.html', (req,res,next) => {
+  res.sendFile(path.join(__dirname, '../', 'googleb860f28972416876.html'));
+});
+
 const paging = (page, totalPost) => {
   const maxPost = 10;
   let currentPage = page ? parseInt(page) : 1;
